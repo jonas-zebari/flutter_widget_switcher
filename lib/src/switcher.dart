@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 class Switcher<T> extends StatefulWidget {
   static SwitcherState<T>? of<T>(BuildContext context) => context.read<SwitcherState<T>>();
 
-  static Widget defaultBuilder(
+  static Widget defaultTransitionBuilder(
     Widget child,
     Animation<double> animation,
     Animation<double> secondaryAnimation,
@@ -25,7 +25,7 @@ class Switcher<T> extends StatefulWidget {
     Duration? sizeDuration,
     this.curve = Curves.linear,
     this.clipBehavior = Clip.none,
-    this.transitionBuilder = Switcher.defaultBuilder,
+    this.transitionBuilder = Switcher.defaultTransitionBuilder,
     required this.children,
   })   : assert(children.length >= 2),
         initialState = initialState ?? children.keys.first,
