@@ -26,10 +26,12 @@ class Switcher<T> extends StatefulWidget {
     this.curve = Curves.linear,
     this.clipBehavior = Clip.none,
     this.transitionBuilder = Switcher.defaultTransitionBuilder,
+    Set<T>? reverseFrom,
     required this.children,
   })   : assert(children.length >= 2),
         initialState = initialState ?? children.keys.first,
         sizeDuration = sizeDuration ?? duration,
+        reverseFrom = reverseFrom ?? <T>{},
         super(key: key);
 
   final T initialState;
@@ -38,6 +40,7 @@ class Switcher<T> extends StatefulWidget {
   final Curve curve;
   final Clip clipBehavior;
   final PageTransitionSwitcherTransitionBuilder transitionBuilder;
+  final Set<T> reverseFrom;
   final Map<T, Widget> children;
 
   @override
@@ -81,6 +84,7 @@ class SwitcherState<T> extends State<Switcher<T>> with SingleTickerProviderState
             return PageTransitionSwitcher(
               duration: widget.duration,
               transitionBuilder: widget.transitionBuilder,
+              reverse: widget.reverseFrom.contains(_previousState),
               child: SizedBox(
                 key: ValueKey(state),
                 child: widget.children[state],
