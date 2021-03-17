@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Switcher<T> extends StatefulWidget {
-  static SwitcherState<T>? of<T>(BuildContext context) => context.read<SwitcherState<T>>();
+  static SwitcherState<T> of<T>(BuildContext context) => context.read<SwitcherState<T>>();
 
   static Widget defaultTransitionBuilder(
     Widget child,
